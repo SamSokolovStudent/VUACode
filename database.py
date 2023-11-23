@@ -5,7 +5,7 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # Load your environment variables
-dotenv_path = r'C:\Users\Soko\Documents\GitHub\VUACode\.env'
+dotenv_path = '.env'
 load_dotenv(dotenv_path)
 MONGODB_ATLAS_CLUSTER_URI = os.getenv('MONGODB_URI')
 os.environ['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
@@ -73,4 +73,23 @@ class ResearchPaperDB:
         ]))
         return documents
 
+DB_NAME = "twinning_papers"
+COLLECTION_NAME = "papers"
+db = ResearchPaperDB(DB_NAME, COLLECTION_NAME)
 
+mockup_query = "The impact of quantum computing on the future of technology"
+
+# Step 1: Embed the query
+query_embedding = db.embed_query(mockup_query)
+
+# Step 2: Find similar documents based on the embedding
+# Index name and embedding field are given according to your specifications
+similar_documents = db.find_similar_documents(
+    embedding=query_embedding,
+    index_name="paperSearchIndex",
+    embedding_field="embedding"
+)
+
+# Display the similar documents
+for document in similar_documents:
+    print(document['title'])

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Dashboard</title>
+    <script>
+        function toggleAbstract() {
+            const abstractContent = document.getElementById('abstract-content');
+            abstractContent.classList.toggle('hidden');
+        }
+
+        function toggleParagraph() {
+            const paragraphContent = document.getElementById('paragraph-content');
+            paragraphContent.classList.toggle('hidden');
+        }
+
+        function toggleCard(cardId) {
+            const card = document.getElementById(cardId);
+            card.classList.toggle('expanded');
+        }
+
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .graph_card {
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for transform and background color */
+        }
+
+        .graph_card:hover {
+            transform: scale(1.05); /* Slightly scale up the card */
+            background-color: #f3f4f6; /* light gray */
+            cursor: pointer;
+            z-index: 5; /* Ensure scaled card is above others */
+        }
+
+        .popup-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            z-index: 10;
+            transition: all 0.3s ease; /* Smooth transition for the popup */
+            opacity: 0; /* Start with the popup content invisible */
+            transform: translateY(-10px); /* Start slightly above its final position */
+        }
+
+        .graph_card:hover .popup-content {
+            display: block;
+            opacity: 1; /* Make the popup fully visible */
+            transform: translateY(0); /* Move to final position */
+        }
+
+        #abstract-content, #paragraph-content {
+            max-height: 20px; /* Adjust as needed to control the peek amount */
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        /* When hovering over the button, reveal more content */
+        .button-hover:hover + .hidden {
+            max-height: 200px; /* Adjust this to fit the content you expect to show */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<header class="bg-white shadow">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="#" class="text-xl font-semibold text-gray-700">Logo</a>
+        <div class="flex space-x-4">
+            <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Search</a>
+            <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Overview</a>
+            <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Previous
+                Results</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container mx-auto px-6 mt-10">
+    <article class="bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-2">Title</h1>
+        <a href="#" class="text-blue-600 hover:underline">External ID: hyperlink</a>
+
+        <div class="my-4">
+            <div class="mb-2">
+                <h2 class="font-semibold">Abstract</h2>
+                <div class="border p-4 rounded-lg relative">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                    <button onclick="toggleAbstract()" class="text-blue-600 hover:underline">click
+                    </button>
+                    <div id="abstract-content" class="hidden mt-2">
+                        <p>Full abstract text goes here...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <h2 class="font-semibold">Relevant Paragraph</h2>
+                <div class="border p-4 rounded-lg relative">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                    <button onclick="toggleParagraph()" class="text-blue-600 hover:underline">click
+                    </button>
+                    <div id="paragraph-content" class="hidden mt-2">
+                        <p>Full paragraph text goes here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <h2 class="font-semibold mb-2">Graphs</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="graph_card border p-4 rounded-lg relative">
+                    <div class="h-40 bg-gray-200"></div>
+                    <div class="popup-content">
+                        <p>Graph details or expanded view</p>
+                    </div>
+                </div>
+                <div class="graph_card border p-4 rounded-lg relative">
+                    <div class="h-40 bg-gray-200"></div>
+                    <div class="popup-content">
+                        <p>Graph details or expanded view</p>
+                    </div>
+                </div>
+                <div class="graph_card border p-4 rounded-lg relative">
+                    <div class="h-40 bg-gray-200"></div>
+                    <div class="popup-content">
+                        <p>Graph details or expanded view</p>
+                    </div>
+                </div>
+                <div class="graph_card border p-4 rounded-lg relative">
+                    <div class="h-40 bg-gray-200"></div>
+                    <div class="popup-content">
+                        <p>Graph details or expanded view</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+</body>
+</html>

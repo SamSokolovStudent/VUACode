@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Paper Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input {
+            flex-grow: 1;
+            border: 1.5px solid lightgrey;
+            outline: none;
+            box-shadow: 0px 0px 20px -18px;
+        }
+
+        .input:hover {
+            border: 2px solid lightgrey;
+            box-shadow: 0px 0px 20px -17px;
+        }
+
+        .input:active {
+            transform: scale(0.95);
+        }
+
+        .input:focus {
+            border: 2px solid grey;
+        }
+
+        .input, button {
+            height: 45px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        button {
+            font-family: inherit;
+            background: royalblue !important;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: calc(100px);
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        button span {
+            display: block;
+            margin-left: 0.3em;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        button:hover .svg-wrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+
+        button:hover svg {
+            transform: translateX(1.2em) rotate(45deg) scale(1.1);
+        }
+
+        button:hover span {
+            transform: translateX(5em);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fly-1 {
+            from {
+                transform: translateY(0.1em);
+            }
+
+            to {
+                transform: translateY(-0.1em);
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50">
+<header class="bg-white shadow">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="#" class="text-xl font-semibold text-gray-700">Logo</a>
+        <div class="flex space-x-4">
+            <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Search</a>
+            <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Overview</a>
+            <a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Previous
+                Results</a>
+        </div>
+    </nav>
+</header>
+
+<div class="min-h-screen flex flex-col items-center justify-center">
+    <div class="mb-6">
+        <div class="input-container">
+            <input type="text" id="input"
+                   class="input text-lg font-semibold"
+                   placeholder="Search for papers...">
+            <button>
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                        >
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path
+                                    fill="currentColor"
+                                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                            ></path>
+                        </svg>
+                    </div>
+                </div>
+                <span>Search</span>
+            </button>
+
+        </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 w-full max-w-4xl">
+        <div class="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+            <div class="text-gray-500">Partner 1</div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+            <div class="text-gray-500">Partner 2</div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+            <div class="text-gray-500">Partner 3</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

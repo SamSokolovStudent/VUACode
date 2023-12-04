@@ -28,24 +28,28 @@ class ResearchPaperDB:
     def get_db(self):
         return self.db
 
-    def insert_paper(self, title, abstract, year, body, authors, external_id, metadata):
-        # Combine and embed the title and abstract
-        title_abstract = title + " " + abstract
-        title_abstract_embedding = self.embeddings.embed_documents([title_abstract])[0]
-
-        # Split the body text
-        body_chunks = self.text_splitter.split_text(body)
+    def insert_paper(self, title, abstract, year, url, authors, external_id, open_access_pdf):
+        # Check if there is text to embed
+        if title or abstract:
+            # Combine and embed the title and abstract
+            title_abstract = (title or '') + " " + (abstract or '')
+            title_abstract_embedding = self.embeddings.embed_documents([title_abstract])[0]
+            embedding_successful = True
+        else:
+            title_abstract_embedding = None
+            embedding_successful = False
 
         # Structure document for MongoDB
         document = {
             "title": title,
             "abstract": abstract,
             "year": year,
+            "url": url,
             "embedding": title_abstract_embedding,
-            "body": [{"chunk": chunk} for chunk in body_chunks],
+            "embedding_successful": embedding_successful,
             "authors": authors,
-            "External ID": external_id,
-            "metadata": metadata
+            "externalIds": external_id,
+            "openAccessPdf": open_access_pdf
         }
 
         # Insert the document into MongoDB

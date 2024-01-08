@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-dotenv_path = '.env'
+dotenv_path = '../.env'
 load_dotenv(dotenv_path)
 MONGODB_ATLAS_CLUSTER_URI = os.getenv('MONGODB_URI')
 
